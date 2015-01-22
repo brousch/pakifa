@@ -1,0 +1,3 @@
+title=PaKIfA
+author=Feral Rooster
+orientation=landscape

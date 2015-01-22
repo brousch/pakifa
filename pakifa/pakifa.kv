@@ -1,0 +1,77 @@
+#:kivy 1.8.0
+#:import Factory kivy.factory.Factory
+
+#:set font_size_xl 26
+#:set font_size_l 22
+#:set font_size_m 18
+#:set color_dk_gray 0.1, 0.1, 0.1, 1
+#:set color_md_gray 0.5, 0.5, 0.5, 1
+#:set color_lt_gray 0.9, 0.9, 0.9, 1
+
+
+<Pakifa>:
+    orientation: 'vertical'
+    padding: sp(font_size_m) / 2
+    spacing: sp(font_size_m) / 2
+    CenteredLabel:
+        bgcolor: 0, 0, 0, 1
+        text: 'Python and Kivy IDE for Android'
+        font_size: sp(font_size_xl)
+        height: 3 * sp(font_size_xl)
+        size_hint_y: None
+    BoxLayout:
+        orientation: 'horizontal'
+        spacing: sp(font_size_m) / 2
+        height: 3 * sp(font_size_m)
+        size_hint_y: None
+        LeftFitLabel:
+            text: 'Select Project:'
+        Spinner:
+            id: project_selector
+            font_size: sp(font_size_m)
+            height: 3 * sp(font_size_m)
+            size_hint_y: None
+            values: ['', 'project1', 'project2']
+            option_cls:  Factory.get("ProjectSelectionSpinnerOption")
+    Button:
+        text: 'Run Project'
+        font_size: sp(font_size_m)
+        height: 3 * sp(font_size_m)
+        size_hint_y: None
+        on_release: root.run_project(project_selector.text)
+    Label:
+        text: ''
+
+
+<CenteredLabel@Label>:
+    bgcolor: 0.5, 0.5, 0.5, 1
+    canvas.before:
+        Color:
+            rgba: self.bgcolor
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    text_size: self.size
+    font_size: sp(font_size_m)
+    halign: 'center'
+    valign: 'middle'
+
+
+<LeftFitLabel@Label>:
+    bgcolor: 0.5, 0.5, 0.5, 1
+    canvas.before:
+        Color:
+            rgba: self.bgcolor
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    font_size: sp(font_size_m)
+    halign: 'left'
+    valign: 'middle'
+    size_hint_x: None
+    width: self.texture_size[0] + self.font_size
+
+<ProjectSelectionSpinnerOption@SpinnerOption>:
+    font_size: sp(font_size_m)
+    height: 3 * sp(font_size_m)
+    size_hint_y: None

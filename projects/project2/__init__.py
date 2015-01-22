@@ -1,0 +1,1 @@
+from project2 import Project2App as MainApp
